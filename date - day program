@@ -1,0 +1,32 @@
+import java.util.Scanner;
+import java.util.Calendar;
+
+class Data {
+    public static void main(String[] args) {
+        Scanner r = new Scanner(System.in);
+        System.out.println("Enter the number of days:");
+        int e = r.nextInt();
+        if (e >= 0) {
+            int years = e / 365;
+            int days = e % 365;
+            int weeks = days / 7;
+            int finalDays = days % 7;
+            System.out.println("No of years: " + years);
+            System.out.println("No of weeks: " + weeks);
+            System.out.println("No of days: " + finalDays);
+        } else {
+            System.out.println("Invalid input");
+        }
+        System.out.println("Enter the day:");
+        int day = r.nextInt();
+        System.out.println("Enter the month:");
+        int month = r.nextInt();
+        System.out.println("Enter the year:");
+        int year = r.nextInt();
+        Calendar cal = Calendar.getInstance();
+        cal.set(year, month - 1, day); 
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+        String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+        System.out.println("The day of the week is: " + days[dayOfWeek - 1]);
+    }
+}
