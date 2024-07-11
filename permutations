@@ -1,0 +1,28 @@
+import java.util.HashSet;
+import java.util.Set;
+
+class UniquePermutations {
+
+    public static void main(String[] args) {
+        String number = "123";
+        Set<String> permutations = new HashSet<>();
+        int n = number.length();
+
+        permutations.add(number);
+        for (int i = 0; i < n; i++) {
+            Set<String> tempSet = new HashSet<>();
+            for (String perm : permutations) {
+                for (int j = 0; j <= perm.length(); j++) {
+                    String newPerm = perm.substring(0, j) + number.charAt(i) + perm.substring(j);
+                    tempSet.add(newPerm);
+                }
+            }
+            permutations = tempSet;
+        }
+
+        System.out.println("Unique permutations of " + number + " are:");
+        for (String perm : permutations) {
+            System.out.println(perm);
+        }
+    }
+}
