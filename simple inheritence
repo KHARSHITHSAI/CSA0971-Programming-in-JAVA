@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+class Student {
+    int[] marks = new int[6];
+    int total = 0;
+    double aggregate = 0.0;
+}
+
+class Grade extends Student {
+    String computeGrade() {
+        if (aggregate > 75) {
+            return "DISTINCTION";
+        } else if (aggregate > 60) {
+            return "FIRST DIVISION";
+        } else if (aggregate > 50) {
+            return "SECOND DIVISION";
+        } else if (aggregate > 40) {
+            return "THIRD DIVISION";
+        } else {
+            return "FAIL";
+        }
+    }
+}
+
+class inhgrade {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Grade student = new Grade();
+
+        String[] subjects = {"Python", "C Programming", "Mathematics", "Physics", "Chemistry", "Professional Ethics"};
+        for (int i = 0; i < subjects.length; i++) {
+            System.out.print("Enter the marks in " + subjects[i] + ": ");
+            student.marks[i] = sc.nextInt();
+            student.total += student.marks[i];
+        }
+
+        student.aggregate = student.total / (double) subjects.length;
+
+        System.out.println("Total = " + student.total);
+        System.out.println("Aggregate = " + student.aggregate);
+        System.out.println("Class: " + student.computeGrade());
+
+    }
+}
