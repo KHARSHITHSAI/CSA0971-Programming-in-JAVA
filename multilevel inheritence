@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+class Student {
+    int[] marks = new int[6];
+}
+
+class Extra extends Student {
+    int total = 0;
+    double aggregate = 0.0;
+
+    void calculateTotalAndAggregate() {
+        for (int mark : marks) {
+            total += mark;
+        }
+        aggregate = total / (double) marks.length;
+    }
+}
+
+class Grade extends Extra {
+    String computeGrade() {
+        if (aggregate > 75) {
+            return "DISTINCTION";
+        } else if (aggregate > 60) {
+            return "FIRST DIVISION";
+        } else if (aggregate > 50) {
+            return "SECOND DIVISION";
+        } else if (aggregate > 40) {
+            return "THIRD DIVISION";
+        } else {
+            return "FAIL";
+        }
+    }
+}
+
+public class multinh {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Grade inst = new Grade();
+
+        String[] subjects = {"Python", "C Programming", "Mathematics", "Physics", "Chemistry", "Professional Ethics"};
+        for (int i = 0; i < subjects.length; i++) {
+            System.out.print("Enter the marks in " + subjects[i] + ": ");
+            inst.marks[i] = sc.nextInt();
+        }
+
+        inst.calculateTotalAndAggregate();
+
+        System.out.println("Total = " + inst.total);
+        System.out.println("Aggregate = " + inst.aggregate);
+        System.out.println("Class: " + inst.computeGrade());
+
+        sc.close();
+    }
+}
